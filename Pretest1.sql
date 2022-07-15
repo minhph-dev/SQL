@@ -1,14 +1,14 @@
 create database dbPretest
 use dbPretest
 go
- 
+ ------------------------------------------------
 create table tbRoom
 ( 
   RoomNo int primary key not null,
   Type varchar(20) check (Type in('VIP', 'Double', 'Single')),
   UnitPrice money check (UnitPrice >=0 and UnitPrice <1000)
 )
-
+------------------------------------------------
 create table tbBooking 
 (
   BookingNo int not null,
@@ -19,7 +19,7 @@ create table tbBooking
 )
 alter table tbBooking add constraint check_date check(DateTo > DateFrom)
 alter table tbBooking add constraint PK_CTHD PRIMARY KEY NONCLUSTERED (BookingNo, RoomNo) 
-
+------------------------------------------------
 set dateformat dmy
 insert into tbRoom values ('101', 'Single', '100'),
                           ('102', 'Single', '100'),
@@ -33,7 +33,7 @@ insert into tbBooking values ('1', '101', 'Julia', '12/11/2020', '14/11/2020'),
 							 ('2', '301', 'Bill', '10/01/2021', '14/01/2021'), 
 							 ('3', '201', 'Ana', '12/01/2021', '14/01/2021'), 
 							 ('3', '202', 'Ana', '12/01/2021', '14/01/2021')
-
+------------------------------------------------------------------------------------------------------------------------
 --3. Create a clustered index ixName on column TouristName of table tbBooking
 create clustered index ixName on tbBooking(TouristName)
 go
